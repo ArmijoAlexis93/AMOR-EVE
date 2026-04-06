@@ -1,15 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>Title</title>
-        <link rel="stylesheet" href="styles.css" />
-        <script src="script.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Te Amo ❤️</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+                overflow: hidden;
+                font-family: "Arial", sans-serif;
+                text-align: center;
+                color: white;
+                cursor: pointer;
+            }
+
+            h1 {
+                font-size: 4em;
+                margin-top: 20vh;
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+                animation: pulse 1.5s infinite;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+            }
+
+            .heart {
+                position: absolute;
+                color: red;
+                font-size: 20px;
+                animation: floatUp 5s linear infinite;
+                opacity: 0.8;
+            }
+
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) scale(1.5);
+                    opacity: 0;
+                }
+            }
+
+            /* Foto que aparece */
+            .foto {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                max-width: 60vw;
+                max-height: 60vh;
+                border-radius: 20px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+                transition: transform 0.5s ease;
+                z-index: 999;
+            }
+
+            .foto.mostrar {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        </style>
     </head>
     <body>
-        <h1 class="title">Hello World</h1>
-        <div id="mainDiv">Hello Div</div>
-        <br />
-        <button onclick="buttonClicked()">Click me</button>
+        <h1>❤️ Te Amo ❤️</h1>
+
+        <h1>❤️ EVELYN ❤️ </h1>
+
+        <!-- FOTO OCULTA -->
+        <img id="fotoEspecial" class="foto" src="tu_foto.jpg" alt="Foto" />
+
+        <script>
+            // Corazones flotando
+            function createHeart() {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.fontSize = Math.random() * 20 + 20 + "px";
+                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+
+            setInterval(createHeart, 300);
+
+            // Mostrar foto al hacer clic
+            const foto = document.getElementById("fotoEspecial");
+            let visible = false;
+
+            document.body.addEventListener("click", () => {
+                visible = !visible;
+                if (visible) {
+                    foto.classList.add("mostrar");
+                } else {
+                    foto.classList.remove("mostrar");
+                }
+            });
+        </script>
     </body>
 </html>
